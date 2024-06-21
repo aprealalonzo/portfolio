@@ -124,6 +124,52 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
   .composer--mobile .center-on-mobile {text-align: center!important;}
   .composer--mobile .rwd-col {width:100%!important;max-width:100%!important;display:inline-block!important;}
 </style>
+
+<!-- This is the image carousel -->
+
+<style>
+.carousel {
+  position: relative;
+  width: 50%; /* Adjusted to handle the scaled images */
+  max-width: 300px; /* Adjusted to handle the scaled images */
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+  width: 100%; /* Adjust the width to fit the container */
+  flex-shrink: 0;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-controls button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carousel-controls button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+</style>
+
+<!-- This is the image carousel -->
+
 </head>
 
 <body id="body" data-bgcolor="Body" style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;" bgcolor="#F4F4F4">
@@ -416,7 +462,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
     <td class="center-text" data-text-style="Subtitles" align="left" style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:800;font-style:normal;color:#EAA929;text-decoration:none;letter-spacing:0px;">
         <singleline>
           <div mc:edit data-text-edit>
-            - WRITING PORTFOLIO
+            - CREATIVE PORTFOLIO
           </div>
         </singleline>
     </td>
@@ -723,6 +769,11 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
 
     </td>
   </tr>
+
+
+
+ 
+
 </table>
 <!-- rwd-col -->
 
@@ -732,6 +783,59 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
     <td height="60" style="font-size:60px;line-height:60px;" data-height="Spacing bottom">&nbsp;</td>
   </tr>
 </table>
+
+
+
+<!-- This is the carousel code and script -->
+
+<div class="carousel">
+  <div class="carousel-images">
+    <img src="images/socmed1.jpg" alt="Image 1">
+    <img src="images/socmed2.jpg" alt="Image 2">
+    <img src="images/socmed3.jpg" alt="Image 3">
+  </div>
+  <div class="carousel-controls">
+    <button id="prev">&#10094;</button>
+    <button id="next">&#10095;</button>
+  </div>
+</div>
+
+<script>
+  const carouselImages = document.querySelector('.carousel-images');
+  const images = document.querySelectorAll('.carousel-images img');
+  const prevButton = document.getElementById('prev');
+  const nextButton = document.getElementById('next');
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    if (index >= images.length) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = images.length - 1;
+    } else {
+      currentIndex = index;
+    }
+    carouselImages.style.transform = `translateX(${-currentIndex * 100}%)`;
+  }
+
+  nextButton.addEventListener('click', () => {
+    showImage(currentIndex + 1);
+  });
+
+  prevButton.addEventListener('click', () => {
+    showImage(currentIndex - 1);
+  });
+
+  showImage(currentIndex);
+
+  window.addEventListener('resize', () => {
+    showImage(currentIndex); // Ensure the correct image is shown after resizing
+  });
+</script>
+
+<!-- This is the carousel code and script -->
+
 <!-- Content -->
 
     </td>
